@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Answer Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Powered Answer Verification</h1>
+        <form action="/" method="POST">
+            <label for="bot_message">Bot Message:</label>
+            <input type="text" id="bot_message" name="bot_message" required>
+
+            <label for="user_response">User Response:</label>
+            <input type="text" id="user_response" name="user_response" required>
+
+            <!-- Hidden Correct Answer -->
+            <input type="hidden" id="correct_answer" name="correct_answer" value="{{ correct_answer }}">
+
+            <button type="submit">Classify</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result">
+                <h3>Predicted Class: {{ prediction }}</h3>
+                <p>Confidence: {{ confidence | round(2) }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
